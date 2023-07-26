@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import logoWhite from "../../assets/img/logo-white.png";
 import { useState } from "react";
 import { createToast } from "../../utils/toastify.js";
-import { standardAlert } from "../../utils/sweetAlert.js";
 const Login = () => {
   // input state
   const [input, setInput] = useState({
@@ -24,7 +23,7 @@ const Login = () => {
 
     // validation
     if (!input.email || !input.password) {
-      createToast("All fields are required!", "error");
+      createToast("All fields are required!", "warning");
     } else {
       setInput({
         email: "",

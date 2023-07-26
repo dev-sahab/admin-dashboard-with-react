@@ -1,15 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { registerUser } from "./authApiSlice.js";
 
 // create slice
 const authSlice = createSlice({
-    name : "auth",
-    initialState : {
-        user: {}
+  name: "auth",
+  initialState: {
+    user: {},
+    error: null,
+    message: null,
+  },
+  reducers: {
+    setMessageEmpty: (state) => {
+      (state.message = null), (state.error = null);
     },
-    reducers: {},
-    extraReducers : (builder) => {}
-})
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(registerUser.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.message = action.payload.message;
+      });
+  },
+});
 
-// export 
-export default authSlice.reducer
+// export setMessageEmpty
+export const { setMessageEmpty } = authSlice.actions;
+
+// export
+export default authSlice.reducer;

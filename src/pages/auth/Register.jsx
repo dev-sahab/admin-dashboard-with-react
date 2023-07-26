@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import logoWhite from "../../assets/img/logo-white.png";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../features/auth/authApiSlice.js";
 import { standardAlert } from "../../utils/sweetAlert.js";
 import { createToast } from "../../utils/toastify.js";
+import { setMessageEmpty } from "../../features/auth/authSlice.js";
 const Register = () => {
   const dispatch = useDispatch();
+  const { error, message } = useSelector((state) => state.auth);
 
   // input state
   const [input, setInput] = useState({
@@ -30,7 +32,7 @@ const Register = () => {
 
     // validation
     if (!input.name || !input.email || !input.password || !input.confPassword) {
-      createToast("All fields are required!", "error");
+      createToast("All fields are required!", "warning");
     } else if (input.password !== input.confPassword) {
       standardAlert(
         { title: "Password Error", alert: "Password doesn't match!" },
@@ -38,18 +40,26 @@ const Register = () => {
       );
     } else {
       dispatch(registerUser(input));
+
+    }
+  };
+
+  useEffect(() => {
+    if (error) {
+      createToast(error, "error");
+      dispatch(setMessageEmpty());
+    }
+    if (message) {
+      createToast(message, "success");
+      dispatch(setMessageEmpty());
       setInput({
         name: "",
         email: "",
         password: "",
         confPassword: "",
       });
-      standardAlert(
-        { title: "Success", alert: "User created successful" },
-        "success"
-      );
     }
-  };
+  }, [error, message]);
   return (
     <>
       {/* <!-- Main Wrapper --> */}
