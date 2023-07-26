@@ -3,6 +3,8 @@ import logoWhite from "../../assets/img/logo-white.png";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../features/auth/authApiSlice.js";
+import { standardAlert } from "../../utils/sweetAlert.js";
+import { createToast } from "../../utils/toastify.js";
 const Register = () => {
   const dispatch = useDispatch();
 
@@ -26,10 +28,26 @@ const Register = () => {
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
 
-    if (input.password === input.confPassword) {
-      dispatch(registerUser(input));
+    // validation
+    if (!input.name || !input.email || !input.password || !input.confPassword) {
+      createToast("All fields are required!", "error");
+    } else if (input.password !== input.confPassword) {
+      standardAlert(
+        { title: "Password Error", alert: "Password doesn't match!" },
+        "error"
+      );
     } else {
-      alert("Password doesn't match");
+      dispatch(registerUser(input));
+      setInput({
+        name: "",
+        email: "",
+        password: "",
+        confPassword: "",
+      });
+      standardAlert(
+        { title: "Success", alert: "User created successful" },
+        "success"
+      );
     }
   };
   return (
