@@ -1,6 +1,37 @@
 import { Link } from "react-router-dom";
 import logoWhite from "../../assets/img/logo-white.png";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../features/auth/authApiSlice.js";
 const Register = () => {
+  const dispatch = useDispatch();
+
+  // input state
+  const [input, setInput] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confPassword: "",
+  });
+
+  // handle input change
+  const handleInputChange = (e) => {
+    setInput((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  // handle register form submit
+  const handleRegisterSubmit = (e) => {
+    e.preventDefault();
+
+    if (input.password === input.confPassword) {
+      dispatch(registerUser(input));
+    } else {
+      alert("Password doesn't match");
+    }
+  };
   return (
     <>
       {/* <!-- Main Wrapper --> */}
@@ -17,12 +48,15 @@ const Register = () => {
                   <p className="account-subtitle">Access to our dashboard</p>
 
                   {/* <!-- Form --> */}
-                  <form action="https://dreamguys.co.in/demo/doccure/admin/login.html">
+                  <form onSubmit={handleRegisterSubmit}>
                     <div className="form-group">
                       <input
                         className="form-control"
                         type="text"
                         placeholder="Name"
+                        name="name"
+                        value={input.name}
+                        onChange={handleInputChange}
                       />
                     </div>
                     <div className="form-group">
@@ -30,6 +64,9 @@ const Register = () => {
                         className="form-control"
                         type="text"
                         placeholder="Email"
+                        name="email"
+                        value={input.email}
+                        onChange={handleInputChange}
                       />
                     </div>
                     <div className="form-group">
@@ -37,6 +74,9 @@ const Register = () => {
                         className="form-control"
                         type="text"
                         placeholder="Password"
+                        name="password"
+                        value={input.password}
+                        onChange={handleInputChange}
                       />
                     </div>
                     <div className="form-group">
@@ -44,6 +84,9 @@ const Register = () => {
                         className="form-control"
                         type="text"
                         placeholder="Confirm Password"
+                        name="confPassword"
+                        value={input.confPassword}
+                        onChange={handleInputChange}
                       />
                     </div>
                     <div className="form-group mb-0">
