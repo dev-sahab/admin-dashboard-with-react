@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoWhite from "../../assets/img/logo-white.png";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,8 @@ import { createToast } from "../../utils/toastify.js";
 import { setMessageEmpty } from "../../features/auth/authSlice.js";
 const Register = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { error, message } = useSelector((state) => state.auth);
 
   // input state
@@ -40,7 +42,6 @@ const Register = () => {
       );
     } else {
       dispatch(registerUser(input));
-
     }
   };
 
@@ -52,6 +53,7 @@ const Register = () => {
     if (message) {
       createToast(message, "success");
       dispatch(setMessageEmpty());
+      navigate("/login");
       setInput({
         name: "",
         email: "",

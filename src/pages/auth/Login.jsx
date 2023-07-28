@@ -1,8 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoWhite from "../../assets/img/logo-white.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createToast } from "../../utils/toastify.js";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../features/auth/authApiSlice.js";
+import { setMessageEmpty } from "../../features/auth/authSlice.js";
 const Login = () => {
+  const {error, message, user} = useSelector(state => state.auth)
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
   // input state
   const [input, setInput] = useState({
     email: "",
@@ -20,17 +26,31 @@ const Login = () => {
   // handle Login form submit
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-
+    
     // validation
     if (!input.email || !input.password) {
       createToast("All fields are required!", "warning");
     } else {
+      dispatch(loginUser(input));
+    }
+  };
+
+  useEffect(() => {
+    if (error) {
+      createToast(error, "error");
+      dispatch(setMessageEmpty());
+    }
+    if (message) {
+      createToast(message, "success");
+      dispatch(setMessageEmpty());
+
+      navigate("/")
       setInput({
         email: "",
         password: "",
       });
     }
-  };
+  }, [error, message, user]);
 
   return (
     <>
