@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "./authApiSlice.js";
+import { loginUser, logoutUser, registerUser } from "./authApiSlice.js";
 
 // create slice
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: {},
+    user: null,
     error: null,
     message: null,
   },
@@ -28,6 +28,13 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.message = action.payload.message;
         state.user = action.payload.user
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(logoutUser.fulfilled, (state, action) => {
+        state.message = action.payload.message;
+        state.user = null
       });
   },
 });

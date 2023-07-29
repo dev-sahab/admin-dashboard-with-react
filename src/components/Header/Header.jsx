@@ -6,8 +6,16 @@ import avatar from "../../assets/img/profiles/avatar-01.jpg";
 import patient from "../../assets/img/patients/patient1.jpg";
 import patient2 from "../../assets/img/patients/patient2.jpg";
 import patient3 from "../../assets/img/patients/patient3.jpg";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../features/auth/authApiSlice.js";
 
 const Header = () => {
+  const dispatch = useDispatch()
+
+  const handleUserLogout = (e) => {
+    e.preventDefault();
+    dispatch(logoutUser())
+  }
   return (
     <>
       {/* <!-- Header --> */}
@@ -213,7 +221,7 @@ const Header = () => {
               <a className="dropdown-item" href="settings.html">
                 Settings
               </a>
-              <a className="dropdown-item" href="login.html">
+              <a className="dropdown-item" href="#" onClick={handleUserLogout}>
                 Logout
               </a>
             </div>
