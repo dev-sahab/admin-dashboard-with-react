@@ -10,7 +10,9 @@ import { loggedInUser } from "./features/auth/authApiSlice.js";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loggedInUser());
+    if (localStorage.getItem("user")) {
+      dispatch(loggedInUser());
+    }
   }, [dispatch]);
 
   return (

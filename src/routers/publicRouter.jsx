@@ -20,6 +20,10 @@ const publicRouter = [
         path: "/forgot-password",
         element: <ForgotPassword />,
       },
+      {
+        path: "*",
+        element: "404",
+      },
     ],
   },
 ];

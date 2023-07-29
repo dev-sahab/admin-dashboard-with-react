@@ -19,6 +19,10 @@ const privateRouter = [
             path: "/users",
             element: <Users />,
           },
+          {
+            path: "*",
+            element: "404",
+          },
         ],
       },
     ],

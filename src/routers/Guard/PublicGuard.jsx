@@ -3,7 +3,12 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const PublicGuard = () => {
   const { user } = useSelector((state) => state.auth);
-  return user ? <Navigate to="/" /> : <Outlet />;
+
+  if (localStorage.getItem("user")) {
+    return user ? <Navigate to="/" /> : <Outlet />;
+  }
+  
+  return <Outlet />;
 };
 
 export default PublicGuard;
