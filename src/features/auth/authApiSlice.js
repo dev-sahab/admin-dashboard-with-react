@@ -59,3 +59,22 @@ export const logoutUser = createAsyncThunk(
     }
   }
 );
+
+// loggedIn user
+export const loggedInUser = createAsyncThunk(
+  "auth/loggedInUser",
+  async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5050/api/v1/auth/me",
+        {
+          withCredentials : true
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  }
+);
