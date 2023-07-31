@@ -53,6 +53,9 @@ const authSlice = createSlice({
   },
 });
 
+// selectors
+export const getAuthData = state => state.auth;
+
 // export setMessageEmpty
 export const { setMessageEmpty } = authSlice.actions;
 

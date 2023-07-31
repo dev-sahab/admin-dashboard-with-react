@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
 import doctor from "../../assets/img/doctors/doctor-thumb-01.jpg";
 import patient from "../../assets/img/patients/patient1.jpg";
 import ModalPopup from "../../components/ModalPopup/ModalPopup.jsx";
 import { useEffect } from "react";
 import DataTable from "datatables.net-dt";
+import PageHeaderTitle from "../../features/auth/PageHeaderTitle.jsx";
 
 const Users = () => {
   useEffect(() => {
@@ -15,15 +15,8 @@ const Users = () => {
       {/* <!-- Page Header --> */}
       <div className="page-header">
         <div className="row">
-          <div className="col-sm-7 col-auto">
-            <h3 className="page-title">Users</h3>
-            <ul className="breadcrumb">
-              <li className="breadcrumb-item">
-                <Link to="/">Dashboard</Link>
-              </li>
-              <li className="breadcrumb-item active">Users</li>
-            </ul>
-          </div>
+          {/* This page header is in <div className="col-sm-7"></div> */}
+          <PageHeaderTitle title="User" />
           <div className="col-sm-5 col">
             <button
               data-target="#Add_Specialities_details"

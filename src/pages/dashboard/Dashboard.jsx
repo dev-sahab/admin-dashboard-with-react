@@ -5,8 +5,10 @@ import special3 from "../../assets/img/specialities/specialities-03.png";
 import special4 from "../../assets/img/specialities/specialities-04.png";
 import special5 from "../../assets/img/specialities/specialities-05.png";
 import { useEffect } from "react";
+import useAuthUserData from "../../hooks/useAuthUserData.jsx";
 
 const Dashboard = () => {
+  const {user} = useAuthUserData()
   useEffect(() => {
     new DataTable("#dash_datatable");
   });
@@ -16,7 +18,7 @@ const Dashboard = () => {
       <div className="page-header">
         <div className="row">
           <div className="col-sm-12">
-            <h3 className="page-title">Welcome Admin!</h3>
+            <h3 className="page-title">Welcome {user?.name}!</h3>
             <ul className="breadcrumb">
               <li className="breadcrumb-item active">Dashboard</li>
             </ul>

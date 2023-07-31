@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import logosm from "../../assets/img/logo-small.png";
 import doctorThumb from "../../assets/img/doctors/doctor-thumb-01.jpg";
-import avatar from "../../assets/img/profiles/avatar-01.jpg";
+import avatar from "../../assets/avatar.png";
 import patient from "../../assets/img/patients/patient1.jpg";
 import patient2 from "../../assets/img/patients/patient2.jpg";
 import patient3 from "../../assets/img/patients/patient3.jpg";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../features/auth/authApiSlice.js";
+import useAuthUserData from "../../hooks/useAuthUserData.jsx";
 
 const Header = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const {user} = useAuthUserData()
 
   const handleUserLogout = (e) => {
     e.preventDefault();
@@ -195,9 +197,9 @@ const Header = () => {
               <span className="user-img">
                 <img
                   className="rounded-circle"
-                  src={avatar}
+                  src={user?.photo ? user?.photo : avatar}
                   width="31"
-                  alt="Ryan Taylor"
+                  alt={user?.name}
                 />
               </span>
             </a>
@@ -205,14 +207,14 @@ const Header = () => {
               <div className="user-header">
                 <div className="avatar avatar-sm">
                   <img
-                    src={avatar}
-                    alt="User Image"
+                    src={user?.photo ? user?.photo : avatar}
+                    alt={user?.name}
                     className="avatar-img rounded-circle"
                   />
                 </div>
                 <div className="user-text">
-                  <h6>Ryan Taylor</h6>
-                  <p className="text-muted mb-0">Administrator</p>
+                  <h6>{user?.name}</h6>
+                  <p className="text-muted mb-0">{user?.role}</p>
                 </div>
               </div>
               <a className="dropdown-item" href="profile.html">
