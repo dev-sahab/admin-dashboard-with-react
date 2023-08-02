@@ -1,5 +1,6 @@
 import PageLayout from "../components/pageLayout/PageLayout.jsx";
 import Dashboard from "../pages/dashboard/Dashboard.jsx";
+import Profile from "../pages/profile/Profile.jsx";
 import Users from "../pages/users/Users.jsx";
 import PrivateGuard from "./Guard/privateGuard.jsx";
 
@@ -18,6 +19,10 @@ const privateRouter = [
           {
             path: "/users",
             element: <Users />,
+          },
+          {
+            path: "/profile",
+            element: <Profile />,
           },
         ],
       },

@@ -29,7 +29,7 @@ const Users = () => {
         </div>
       </div>
       {/* <!-- /Page Header --> */}
-      <ModalPopup target="Add_Specialities_details">
+      <ModalPopup target="Add_Specialities_details" title="Popup">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius illum
           modi in sed iusto, alias unde facilis suscipit non, iste tempora

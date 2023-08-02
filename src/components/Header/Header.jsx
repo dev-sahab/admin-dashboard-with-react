@@ -12,12 +12,12 @@ import useAuthUserData from "../../hooks/useAuthUserData.jsx";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const {user} = useAuthUserData()
+  const { user } = useAuthUserData();
 
   const handleUserLogout = (e) => {
     e.preventDefault();
-    dispatch(logoutUser())
-  }
+    dispatch(logoutUser());
+  };
   return (
     <>
       {/* <!-- Header --> */}
@@ -197,7 +197,11 @@ const Header = () => {
               <span className="user-img">
                 <img
                   className="rounded-circle"
-                  src={user?.photo ? user?.photo : avatar}
+                  src={
+                    user?.photo
+                      ? `http://localhost:5050/user/${user?.photo}`
+                      : avatar
+                  }
                   width="31"
                   alt={user?.name}
                 />
@@ -207,7 +211,11 @@ const Header = () => {
               <div className="user-header">
                 <div className="avatar avatar-sm">
                   <img
-                    src={user?.photo ? user?.photo : avatar}
+                    src={
+                      user?.photo
+                        ? `http://localhost:5050/user/${user.photo}`
+                        : avatar
+                    }
                     alt={user?.name}
                     className="avatar-img rounded-circle"
                   />

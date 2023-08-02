@@ -22,6 +22,14 @@ const Sidebar = () => {
                   <i className="fe fe-user"></i> <span>Users</span>
                 </Link>
               </li>
+              <li className="menu-title">
+                <span>Pages</span>
+              </li>
+              <li className={location.pathname === "/profile" && "active"}>
+                <Link to="/profile">
+                  <i className="fe fe-user-plus"></i> <span>Profile</span>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

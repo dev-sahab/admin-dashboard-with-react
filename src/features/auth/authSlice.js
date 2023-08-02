@@ -4,13 +4,17 @@ import {
   loginUser,
   logoutUser,
   registerUser,
+  userPasswordReset,
+  userProfileUpdate,
 } from "./authApiSlice.js";
 
 // create slice
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
+    user: localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : null,
     error: null,
     message: null,
   },
@@ -33,7 +37,7 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.message = action.payload.message;
         state.user = action.payload.user;
-        localStorage.setItem("user", JSON.stringify(action.payload.user))
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.error = action.error.message;
@@ -41,7 +45,7 @@ const authSlice = createSlice({
       .addCase(logoutUser.fulfilled, (state, action) => {
         state.message = action.payload.message;
         state.user = null;
-        localStorage.removeItem("user")
+        localStorage.removeItem("user");
       })
       .addCase(loggedInUser.rejected, (state, action) => {
         state.error = action.error.message;
@@ -49,12 +53,26 @@ const authSlice = createSlice({
       })
       .addCase(loggedInUser.fulfilled, (state, action) => {
         state.user = action.payload;
+      })
+      .addCase(userPasswordReset.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(userPasswordReset.fulfilled, (state, action) => {
+        state.message = action.payload.message;
+      })
+      .addCase(userProfileUpdate.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(userProfileUpdate.fulfilled, (state, action) => {
+        state.message = action.payload.message;
+        state.user = action.payload.user;
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
       });
   },
 });
 
 // selectors
-export const getAuthData = state => state.auth;
+export const getAuthData = (state) => state.auth;
 
 // export setMessageEmpty
 export const { setMessageEmpty } = authSlice.actions;

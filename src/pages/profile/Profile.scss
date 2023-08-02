@@ -1,0 +1,47 @@
+.profile-image {
+  position: relative;
+  img {
+    transition: 0.3s ease-in-out;
+  }
+  &:hover {
+    img {
+      filter: blur(1px) brightness(0.7);
+    }
+    .update-photo {
+      opacity: 1;
+    }
+  }
+
+  .update-photo {
+    transition: 0.3s ease-in-out;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #fff;
+    opacity: 0;
+  }
+}
+
+.photo-preview {
+  img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
+.profile-header img {
+  object-fit: cover;
+}
+
+.password {
+  position: relative;
+  .icons {
+    position: absolute;
+    right: 10px;
+    top: 44px;
+  }
+}
