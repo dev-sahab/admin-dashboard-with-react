@@ -1,3 +1,4 @@
+import PageNotFound from "../pages/PageNotFound/PageNotFound.jsx";
 import ForgotPassword from "../pages/auth/ForgotPassword.jsx";
 import Login from "../pages/auth/Login.jsx";
 import Register from "../pages/auth/Register.jsx";
@@ -20,11 +21,11 @@ const publicRouter = [
         path: "/forgot-password",
         element: <ForgotPassword />,
       },
-      {
-        path: "*",
-        element: "404",
-      },
     ],
+  },
+  {
+    path: "*",
+    element: <PageNotFound />,
   },
 ];
 
