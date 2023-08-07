@@ -4373,3 +4373,17 @@ table.table-inbox tbody tr.checked {
     display: none;
   }
 }
+
+
+/* custom css */
+.nav.user-menu .user-img img {
+  object-fit: cover;
+  height: 30px;
+  width: 30px;
+}
+
+.user-menu .avatar > img {
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+}

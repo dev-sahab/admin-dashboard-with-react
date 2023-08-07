@@ -38,6 +38,7 @@ const authSlice = createSlice({
         state.message = action.payload.message;
         state.user = action.payload.user;
         localStorage.setItem("user", JSON.stringify(action.payload.user));
+        console.log(action.payload.user);
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.error = action.error.message;

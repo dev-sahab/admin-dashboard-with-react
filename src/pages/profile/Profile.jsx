@@ -1,4 +1,4 @@
-import PageHeaderTitle from "../../features/auth/PageHeaderTitle.jsx";
+import PageHeaderTitle from "../../components/PageHeader/PageHeaderTitle.jsx";
 import avatar from "../../assets/avatar.png";
 import useAuthUserData from "../../hooks/useAuthUserData.jsx";
 import ModalPopup from "../../components/ModalPopup/ModalPopup.jsx";
