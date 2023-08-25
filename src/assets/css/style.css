@@ -1744,7 +1744,7 @@ html.menu-opened body {
   background-color: #19c1dc;
   color: #fff;
 }
-.sidebar-menu li.active a {
+.sidebar-menu li.active > a {
   background-color: #00d0f1;
   color: #fff;
 }
