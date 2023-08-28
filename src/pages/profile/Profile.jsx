@@ -97,7 +97,7 @@ const Profile = () => {
       phone: user?.phone,
       address: user?.address,
     }));
-  }, [setInput]);
+  }, [setInput, user]);
 
   // handle update profile details
   const handleUpdateProfile = (e) => {
@@ -156,7 +156,7 @@ const Profile = () => {
       createToast(message, "success");
       dispatch(setMessageEmpty());
     }
-  }, [error, message]);
+  }, [error, message, dispatch]);
 
   return (
     <>
