@@ -197,11 +197,7 @@ const Header = () => {
               <span className="user-img">
                 <img
                   className="rounded-circle"
-                  src={
-                    user?.photo
-                      ? `http://localhost:5050/user/${user?.photo}`
-                      : avatar
-                  }
+                  src={user?.photo ? user?.photo : avatar}
                   width="31"
                   alt={user?.name}
                 />
@@ -211,11 +207,7 @@ const Header = () => {
               <div className="user-header">
                 <div className="avatar avatar-sm">
                   <img
-                    src={
-                      user?.photo
-                        ? `http://localhost:5050/user/${user.photo}`
-                        : avatar
-                    }
+                    src={user?.photo ? user?.photo : avatar}
                     alt={user?.name}
                     className="avatar-img rounded-circle"
                   />
@@ -225,9 +217,9 @@ const Header = () => {
                   <p className="text-muted mb-0">{user?.role?.name}</p>
                 </div>
               </div>
-              <a className="dropdown-item" href="profile.html">
+              <Link className="dropdown-item" to="/profile">
                 My Profile
-              </a>
+              </Link>
               <a className="dropdown-item" href="settings.html">
                 Settings
               </a>

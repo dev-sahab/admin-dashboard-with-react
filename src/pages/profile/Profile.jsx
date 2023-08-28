@@ -176,11 +176,7 @@ const Profile = () => {
               <img
                 className="rounded-circle"
                 alt={user?.name ? user.name : "User Image"}
-                src={
-                  user?.photo
-                    ? `http://localhost:5050/user/${user.photo}`
-                    : avatar
-                }
+                src={user?.photo ? user?.photo : avatar}
               />
               <i className="fa fa-edit update-photo"></i>
             </a>
@@ -393,13 +389,7 @@ const Profile = () => {
       <ModalPopup target="profile-photo-update" title="Profile Photo">
         <div className="photo-preview text-center">
           <img
-            src={
-              !image.url
-                ? user.photo
-                  ? `http://localhost:5050/user/${user.photo}`
-                  : avatar
-                : image.url
-            }
+            src={!image.url ? (user?.photo ? user?.photo : avatar) : image.url}
           />
           <div className="upload-photo mt-4">
             <input
