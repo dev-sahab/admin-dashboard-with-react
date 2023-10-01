@@ -89,6 +89,26 @@ export const userPasswordReset = createAsyncThunk(
 );
 
 // loggedIn user password reset
+export const userProfilePhotoUpdate = createAsyncThunk(
+  "auth/userProfilePhotoUpdate",
+  async (data) => {
+    try {
+      const response = await axios.patch(
+        "http://localhost:5050/api/v1/auth/profile-photo-update",
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  }
+);
+
+// loggedIn user data reset
 export const userProfileUpdate = createAsyncThunk(
   "auth/userProfileUpdate",
   async (data) => {

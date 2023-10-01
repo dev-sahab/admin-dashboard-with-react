@@ -5,6 +5,7 @@ import {
   logoutUser,
   registerUser,
   userPasswordReset,
+  userProfilePhotoUpdate,
   userProfileUpdate,
 } from "./authApiSlice.js";
 
@@ -65,6 +66,14 @@ const authSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(userProfileUpdate.fulfilled, (state, action) => {
+        state.message = action.payload.message;
+        state.user = action.payload.user;
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
+      })
+      .addCase(userProfilePhotoUpdate.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(userProfilePhotoUpdate.fulfilled, (state, action) => {
         state.message = action.payload.message;
         state.user = action.payload.user;
         localStorage.setItem("user", JSON.stringify(action.payload.user));

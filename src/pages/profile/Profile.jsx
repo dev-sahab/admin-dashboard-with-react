@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   userPasswordReset,
+  userProfilePhotoUpdate,
   userProfileUpdate,
 } from "../../features/auth/authApiSlice.js";
 import { createToast } from "../../utils/toastify.js";
@@ -23,16 +24,14 @@ const Profile = () => {
   // set image url
   const [image, setImage] = useState({
     url: null,
-    selectedFile: null,
-    value: null,
+    selectedFile: null
   });
 
   const handleImageChange = (e) => {
     setImage((prevState) => ({
       ...prevState,
       url: URL.createObjectURL(e.target.files[0]),
-      selectedFile: e.target.files[0],
-      value: e.target.value,
+      selectedFile: e.target.files[0]
     }));
   };
 
@@ -47,15 +46,15 @@ const Profile = () => {
     // Update the formData object
     formData.append("user-profile", image.selectedFile);
 
-    dispatch(userProfileUpdate(formData));
+    // update data
+    dispatch(userProfilePhotoUpdate(formData));
 
     const modal = document.getElementById("profile-photo-update");
     setTimeout(() => {
       setImage((prevState) => ({
         ...prevState,
         url: null,
-        selectedFile: null,
-        value: "",
+        selectedFile: null
       }));
       modal.querySelector(".close").click();
     }, 500);
